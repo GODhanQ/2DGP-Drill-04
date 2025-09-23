@@ -7,9 +7,13 @@ current_animation = 0
 # 밑에서 부터 첫 번째
 animation_frame_count = [5, 5, 6, 6]
 animation_frame_wANDh = [
+    # 주황 사무라이 종 배기
     [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ],
-    [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ],
+    # 주황 사무라이 횡 배기
+    [(150, 240), (150, 240), (150, 240), (300, 240), (300, 240) ],
+    # 빨강 사무라이 뛰기
     [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ],
+    # 빨강 사무라이 걷기
     [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ]
 ]
 sprite_width = 1800
@@ -21,14 +25,16 @@ while True:
     for i in range(0, animation_count):
         current_animation = i
         for j in range(animation_frame_count[i]):
-            # 캔버스 지우기
             clear_canvas()
 
-            # 현재 프레임의 너비와 높이 가져오기
             width, height = animation_frame_wANDh[i][j]
 
             bottom = current_animation * (sprite_height // 4)
             left = j * sprite_width // 6
+
+            # 줄어든 너비의 반 만큼 left를 이동
+            MoveLeft_ReducedWidth = 300 - width
+            left += MoveLeft_ReducedWidth // 2
 
             character.clip_draw(left, bottom, width, height, 400, 300)
             update_canvas()
