@@ -4,28 +4,34 @@ open_canvas()
 
 animation_count = 4
 current_animation = 0
-animation_frame_count = [6, 6, 5, 5]
+# 밑에서 부터 첫 번째
+animation_frame_count = [5, 5, 6, 6]
 animation_frame_wANDh = [
-    [(192, 150), (192, 150), (192, 150), (192, 150), (192, 150), (192, 150)],
-    [(192, 150), (192, 150), (192, 150), (192, 150), (192, 150), (192, 150)],
-    [(230, 150), (230, 150), (230, 150), (230, 150), (230, 150)],
-    [(230, 150), (230, 150), (230, 150), (230, 150), (230, 150)]
+    [(300, 249), (300, 249), (300, 249), (300, 249), (300, 249), (300, 249)],
+    [(), (), (), (), (), ()],
+    [(), (), (), (), ()],
+    [(), (), (), (), ()]
 ]
-sprite_width = 1536
-sprite_height = 1024
-character = load_image("Samurai_Sprite.png")
+sprite_width = 1800
+sprite_height = 1000
+character = load_image("Samurai_Sprite_1800x1000.png")
 
 frame = 0
-# 애니메이션의 첫 번째 프레임을 표시하기 위한 계산
-# 첫 번째 애니메이션(current_animation = 0), 첫 번째 프레임(frame = 0)
-left = 0
-bottom = sprite_height - animation_frame_wANDh[0][0][1]
-width = animation_frame_wANDh[0][0][0]
-height = animation_frame_wANDh[0][0][1]
-
 while True:
     clear_canvas()
+
+    # 현재 프레임의 너비와 높이 가져오기
+    width, height = animation_frame_wANDh[0][frame]
+
+    bottom = current_animation * (sprite_height // 4)
+    left = frame * sprite_width // 6
+
     character.clip_draw(left, bottom, width, height, 400, 300)
     update_canvas()
+
+    # 프레임 업데이트 및 딜레이
+    print(frame)
+    frame = (frame + 1) % animation_frame_count[0]
+    delay(0.5)
 
 close_canvas()
