@@ -1,33 +1,31 @@
 from pico2d import *
-from typing import Final
 
 open_canvas()
 
-animation_count: Final = 4
-animation_frame_count = [10, 12, 6, 9]
-animation_frame_wANDh = [(27, 45), (27, 48), (27, 48), (27, 48), (32, 48),
-                         (32, 48), (32, 48), (32, 48), (32, 48), (32, 48),
-                         (32, 48)]  # 가로 너비를 기존 값에서 3 더 늘림
-sprite_width = 399
-sprite_height = 525
-character = load_image("sonic-sprite.png")
+animation_count = 4
+current_animation = 0
+animation_frame_count = [6, 6, 5, 5]
+animation_frame_wANDh = [
+    [(192, 150), (192, 150), (192, 150), (192, 150), (192, 150), (192, 150)],
+    [(192, 150), (192, 150), (192, 150), (192, 150), (192, 150), (192, 150)],
+    [(230, 150), (230, 150), (230, 150), (230, 150), (230, 150)],
+    [(230, 150), (230, 150), (230, 150), (230, 150), (230, 150)]
+]
+sprite_width = 1536
+sprite_height = 1024
+character = load_image("Samurai_Sprite.png")
 
 frame = 0
+# 애니메이션의 첫 번째 프레임을 표시하기 위한 계산
+# 첫 번째 애니메이션(current_animation = 0), 첫 번째 프레임(frame = 0)
+left = 0
+bottom = sprite_height - animation_frame_wANDh[0][0][1]
+width = animation_frame_wANDh[0][0][0]
+height = animation_frame_wANDh[0][0][1]
+
 while True:
     clear_canvas()
-
-    bottom = sprite_height - (2 * animation_frame_wANDh[0][1]) + 10
-    left = frame * animation_frame_wANDh[0][0] + 3
-
-    # 5번째 프레임부터 left 값을 추가로 +5
-    if frame >= 5:
-        left += 5
-
-    character.clip_draw(left, bottom, animation_frame_wANDh[0][0],
-                        animation_frame_wANDh[0][1], 410, 300)
+    character.clip_draw(left, bottom, width, height, 400, 300)
     update_canvas()
-    frame = (frame + 1) % animation_frame_count[0]
-    delay(0.5)
-    print(frame)
 
 close_canvas()
