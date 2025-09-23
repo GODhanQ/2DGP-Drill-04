@@ -1,5 +1,5 @@
+# Drill #4 제출 - 2024180014 민현규
 from pico2d import *
-import pygame
 
 open_canvas()
 
