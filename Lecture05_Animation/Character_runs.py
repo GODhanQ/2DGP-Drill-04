@@ -1,22 +1,23 @@
 # Drill #4 제출 - 2024180014 민현규
 from pico2d import *
 
-open_canvas()
+Window_width, Window_height = 800, 600
+open_canvas(Window_width, Window_height)
 
 animation_count = 4
 current_animation = 0
 # 밑에서 부터 첫 번째
-animation_frame_count = [5, 5, 6, 6]
-animation_frame_wANDh = [
+animation_frame_count = (5, 5, 6, 6)
+animation_frame_wANDh = (
     # 주황 사무라이 종 배기
-    [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ],
+    ((300, 240), (300, 240), (300, 240), (300, 240), (300, 240)),
     # 주황 사무라이 횡 배기
-    [(150, 240), (160, 240), (170, 240), (300, 240), (250, 240) ],
+    ((150, 240), (160, 240), (170, 240), (300, 240), (250, 240)),
     # 빨강 사무라이 뛰기
-    [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ],
+    ((300, 240), (300, 240), (300, 240), (300, 240), (300, 240), (300, 240)),
     # 빨강 사무라이 걷기
-    [(300, 240), (300, 240), (300, 240), (300, 240), (300, 240), (300, 240) ]
-]
+    ((300, 240), (300, 240), (300, 240), (300, 240), (300, 240), (300, 240))
+)
 sprite_width = 1800
 sprite_height = 1000
 
@@ -39,7 +40,7 @@ while True:
                 MoveLeft_ReducedWidth = 300 - width
                 left += MoveLeft_ReducedWidth // 2
 
-                character.clip_draw(left, bottom, width, height, 400, 300)
+                character.clip_draw(left, bottom, width, height, Window_width // 2, Window_height // 2)
                 update_canvas()
 
                 print(f"Frame : {j}, Animation : {i}, Width : {width}, Height : {height}")
